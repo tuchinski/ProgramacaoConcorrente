@@ -15,6 +15,11 @@ class Contador{
     public void increments(){
         this.valor = this.valor++;
     }
+
+    public int getValor() {
+        return valor;
+    }
+    
 }
 
 class InsereThread extends Thread{
@@ -22,6 +27,7 @@ class InsereThread extends Thread{
     
     public InsereThread(Contador c){
         this.contador = c;
+        System.out.println("thread " + c.getValor());
     }
 }
 
@@ -31,6 +37,6 @@ class InsereThread extends Thread{
  */
 public class Ex3 {
     public static void main(String[] args) {
-        
+
     }
 }
