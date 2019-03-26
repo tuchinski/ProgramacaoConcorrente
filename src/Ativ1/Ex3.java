@@ -5,29 +5,33 @@
  */
 package Ativ1;
 
-class Contador{
-    private int valor;
-    
-    public Contador(int valor){
-       this.valor = valor;
-    }
-    
-    public void increments(){
-        this.valor = this.valor++;
-    }
 
-    public int getValor() {
-        return valor;
-    }
-    
-}
 
 class InsereThread extends Thread{
-    Contador contador;
+    private int countSequence = 0;
     
-    public InsereThread(Contador c){
-        this.contador = c;
-        System.out.println("thread " + c.getValor());
+    public InsereThread(){
+    }
+    
+    public int nextValueSequence(){
+        this.countSequence++;
+        return this.countSequence;
+    }
+}
+
+class UnsafeThread extends Thread{
+    private InsereThread insereThread;
+    
+    public UnsafeThread(){
+        this.insereThread = new InsereThread();
+    }
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 100; i++) {
+           int value = this.insereThread.nextValueSequence();
+            System.out.println(value);
+        }
     }
 }
 
@@ -37,6 +41,9 @@ class InsereThread extends Thread{
  */
 public class Ex3 {
     public static void main(String[] args) {
-
+        for (int i = 0; i < 100; i++) {
+            new UnsafeThread().start();
+        }
+        
     }
 }
