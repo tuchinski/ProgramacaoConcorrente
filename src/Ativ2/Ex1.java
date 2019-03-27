@@ -7,8 +7,6 @@ thread, espere um tempo aleat ́orio para terminar
 
 package Ativ2;
 
-//import java.util.logging.Level;
-//import java.util.logging.Logger;
 import java.util.Random;
 
 /**
