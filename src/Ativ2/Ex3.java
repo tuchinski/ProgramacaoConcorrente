@@ -23,8 +23,7 @@ public class Ex3 {
         // e em seguida a interrompe
         Thread threadRandom = new MyThreadRdn();
         threadRandom.start();
-        threadRandom.interrupt();
-        
+        threadRandom.interrupt();        
     }
     
 }
