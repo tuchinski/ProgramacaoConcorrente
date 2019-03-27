@@ -15,18 +15,20 @@ import java.util.Random;
  */
 
 class MyThreadRdn extends Thread{
-    int value = 0;
-    int id = -1;
+    private int value = 0;
+    private int id = -1;
+    private final int minTime = 1000;
+    private final int maxTime = 2000;
    
      public MyThreadRdn(){
         Random aleatorio = new Random();
-        this.value = 1000 + aleatorio.nextInt(2000-1000); 
+        this.value = this.minTime + aleatorio.nextInt(this.maxTime-this.minTime); 
     }
      
     public MyThreadRdn(int id){
         Random aleatorio = new Random();
         this.id = id;
-        this.value = 1000 + aleatorio.nextInt(2000-1000); 
+        this.value = this.minTime + aleatorio.nextInt(this.maxTime-this.minTime); 
     }
     
     @Override
@@ -38,7 +40,7 @@ class MyThreadRdn extends Thread{
                 throw new InterruptedException();
             }
         } catch (InterruptedException ex) {
-            System.out.println("MyThreadRdn interrupted");
+//            System.out.println("MyThreadRdn " +this.id + " interrupted");
             return;
         }
         System.out.println("Thread " + this.id + " finalized in " + value + " seconds");
