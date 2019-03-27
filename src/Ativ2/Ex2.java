@@ -9,20 +9,19 @@ import java.io.FileReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.Random;
 
 /**
  *
  * @author tuchinski
  */
-class MyThreadRunnable implements Runnable {
+class MyThreadReadFile implements Runnable {
 
     private final String fileName;
-    ArrayList<String> phrases = new ArrayList<>();
+    private final int time = 1000;
+    ArrayList<String> phrases = new ArrayList<>(); //armazena as frases do arquivo
 
-    public MyThreadRunnable(String fileName) {
+    public MyThreadReadFile(String fileName) {
         this.fileName = fileName;
         try {
             FileReader file = new FileReader(this.fileName);
@@ -30,14 +29,14 @@ class MyThreadRunnable implements Runnable {
             String phrase = readFile.readLine();
 
             while (phrase != null) {
-//                System.out.println(phrase);
                 this.phrases.add(phrase);
                 phrase = readFile.readLine();
-            }
 
-        } catch (FileNotFoundException ex) {
+            }
+            file.close();
+        } catch (FileNotFoundException ex) { //exceção caso a abertura do arquivo de errado
             System.out.println("File not found!");
-        } catch (IOException ex) {
+        } catch (IOException ex) {//exceção caso a leitura do arquivo de errado
             System.out.println("IO Exception!");
         }
 
@@ -50,9 +49,13 @@ class MyThreadRunnable implements Runnable {
             int rndNum = rnd.nextInt(this.phrases.size());
             System.out.println(this.phrases.get(rndNum));
             try {
-                Thread.sleep(10000);
+                Thread.sleep(this.time);
+                if (Thread.interrupted()) {
+                    throw new InterruptedException();
+                }
             } catch (InterruptedException ex) {
-                System.out.println("Thread Interrupted!");
+                System.out.println("MyThreadReadFile Interrupted!");
+                return;
             }
         }
     }
@@ -62,8 +65,10 @@ class MyThreadRunnable implements Runnable {
 public class Ex2 {
 
     public static void main(String[] args) {
-        String fileName = "/home/tuchinski/Documentos/UTFPR/Prog_Concorrente/quotes.txt";
-        new Thread(new MyThreadRunnable(fileName)).start();
-    }
+        String fileName = "quotes.txt";
+        Thread t1 = new Thread(new MyThreadReadFile(fileName));
+        t1.start();
 
+        
+    }
 }
