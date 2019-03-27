@@ -21,6 +21,9 @@ class MyThread extends Thread{
             
     public MyThread(){
         Random aleatorio = new Random();
+        this.value = 1000 + aleatorio.nextInt(2000-1000);
+        
+        
     }
     
     @Override
@@ -37,10 +40,9 @@ class MyThread extends Thread{
 
 public class Ex1 {
     public static void main(String[] args) {
-//        Thread t1 = new MyThread(1000);
-//        Thread t2 = new MyThread(2000);
-//        Thread t3 = new MyThread(3000);
+        for (int i = 0; i < 10; i++) {
+            new MyThread().start();
+        }
         
-        t1.start();
     }
 }
