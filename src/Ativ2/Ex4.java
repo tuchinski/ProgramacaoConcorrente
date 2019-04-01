@@ -5,6 +5,8 @@ exiba quais threads receberam sinais de interrupção.
 package Ativ2;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -20,35 +22,66 @@ class MonitorThread implements Runnable {
 
     @Override
     public void run() {
-        while (true && this.threads.size() > 0) {
-            int i = 0;
-            for (Thread t : this.threads) {
+        try {
+            for (Thread t : threads) {
                 if (t.isInterrupted()) {
-                    System.out.println("ponto");
-                    System.out.println("Thread " + i + "is interrupted\n");
-                }else{
-                    System.out.println("Thread " + i + "is  not interrupted\n");
+                    System.out.println("Thread " + t.currentThread().getName() + " interrupted");
+                } else {
+                    System.out.println("Thread " + t.currentThread().getName() + " running");
                 }
-                i++;
+
+//                System.out.println(t.getState());
             }
+
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            System.out.println("Thread Monitor Interrupted");
+        }
+
+    }
+}
+
+class SimpleThread extends Thread {
+
+    @Override
+    public void run() {
+        try {
+            while (true) {
+//                System.out.println("Thread " + Thread.currentThread().getName()+ " is running!");
+                Thread.sleep(3000);
+            }
+        } catch (InterruptedException ex) {
+            System.out.println(ex);
         }
     }
 
 }
 
 public class Ex4 {
+
     public static void main(String[] args) {
-        ArrayList<Thread> listThreads= new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            listThreads.add(new MyThreadRdn(i));
-            listThreads.get(i).start();
+        ArrayList<Thread> arrayThreads = new ArrayList<>();
+
+        for (int i = 0; i < 2; i++) {
+            Thread t1 = new SimpleThread();
+            t1.setName(Integer.toString(i));
+            arrayThreads.add(t1);
+            arrayThreads.get(i).start();
         }
-        new Thread(new MonitorThread(listThreads)).start();
         
+        System.out.println(arrayThreads.size());
         
-        listThreads.get(0).interrupt();
-        listThreads.get(1).interrupt();
-        listThreads.get(2).interrupt();
-        listThreads.get(3).interrupt();
+        Thread monitor = new Thread(new MonitorThread(arrayThreads));
+        monitor.start();
+
     }
 }
+
+//        Runnable sleep = () ->{
+//            try {
+//                Thread.sleep(2000);
+//                t1.interrupt();
+//            } catch (InterruptedException ex) {
+//                
+//            }
+//        };
