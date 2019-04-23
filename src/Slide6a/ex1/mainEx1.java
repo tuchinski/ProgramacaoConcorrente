@@ -18,7 +18,6 @@ public class mainEx1 {
 
         ThreadInsere i1 = new ThreadInsere(monitor);
         ThreadInsere i2 = new ThreadInsere(monitor);
-        
         i1.start();
         i2.start();
         c1.start();

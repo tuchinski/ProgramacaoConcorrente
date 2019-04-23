@@ -15,11 +15,11 @@ public class ThreadConsome extends Thread {
 
     public ThreadConsome(MonitorBufferCircular monitor) {
         this.monitor = monitor;
+        ThreadConsome.currentThread().setName("Consome1");
     }
 
     @Override
     public void run() {
-        System.out.println("consome");
         while (true) {
             System.out.println("Numero Consumido: " + this.monitor.consome());
         }

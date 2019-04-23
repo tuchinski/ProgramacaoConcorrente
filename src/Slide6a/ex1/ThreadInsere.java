@@ -21,10 +21,9 @@ public class ThreadInsere extends Thread {
 
     @Override
     public void run() {
-        System.out.println("insere");
         while (true) {
             Random rnd = new Random();
-            int numAleatorio = rnd.nextInt();
+            int numAleatorio = rnd.nextInt(100);
             this.monitor.insere(numAleatorio);
         }
     }
