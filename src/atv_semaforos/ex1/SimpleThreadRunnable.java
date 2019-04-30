@@ -30,8 +30,6 @@ public class SimpleThreadRunnable implements Runnable{
             System.out.println("Thread Runnable Finalizada");
         } catch (InterruptedException ex) {
             Logger.getLogger(SimpleThreadRunnable.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            s.release();
         }
     }
     
