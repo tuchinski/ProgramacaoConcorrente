@@ -18,21 +18,28 @@ public class ReaderWriter {
     Semaphore mutex = new Semaphore(1);
     Semaphore wLock = new Semaphore(1);
     
-    public synchronized void startRead(){
-        if(this.numReaders == 0){
-            try {
+    public void startRead(){
+        try {
+            this.mutex.acquire();
+            if(this.numReaders == 0){
                 this.wLock.acquire();
-            } catch (InterruptedException ex) {
-                this.numReaders++;
             }
+            this.numReaders++;
+            this.mutex.release();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ReaderWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
-        this.numReaders++;
     }
     
-    public synchronized void endRead(){
-        this.numReaders--;
-        if(this.numReaders == 0){
-            this.wLock.release();
+    public void endRead(){
+        try {
+            this.mutex.acquire();
+            this.numReaders--;
+            if(this.numReaders == 0){
+                this.wLock.release();
+            }
+        } catch (InterruptedException ex) {
+            Logger.getLogger(ReaderWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
