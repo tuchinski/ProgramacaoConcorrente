@@ -24,6 +24,7 @@ public class ThreadInsere extends Thread {
         while (true) {
             Random rnd = new Random();
             int numAleatorio = rnd.nextInt(100);
+            System.out.println("Inserindo Valor-> " + numAleatorio);
             this.monitor.insere(numAleatorio);
         }
     }
