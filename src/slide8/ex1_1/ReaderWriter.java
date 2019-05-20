@@ -16,9 +16,9 @@ import java.util.logging.Logger;
  * @author a1792334
  */
 public class ReaderWriter {
-    int numReaders = 0;
-    Semaphore mutex = new Semaphore(1);
-    Semaphore wLock = new Semaphore(1);
+    private int numReaders = 0;
+    private final Semaphore mutex = new Semaphore(1);
+    private final Semaphore wLock = new Semaphore(1);
     
     public void startRead(){
         try {
