@@ -1,9 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *  Implementar soluções para o problema dos leitores-escritores
+ * que:
+ * 1.1  priorize os leitores.
+ * 1.2  sem inani ̧c ̃ao.
+ * 1.3  priorize os escritores.
  */
-package slide8.ex1;
+package slide8.ex1_1;
 
 import java.util.concurrent.Semaphore;
 import java.util.logging.Level;
@@ -14,9 +16,9 @@ import java.util.logging.Logger;
  * @author a1792334
  */
 public class ReaderWriter {
-    int numReaders = 0;
-    Semaphore mutex = new Semaphore(1);
-    Semaphore wLock = new Semaphore(1);
+    private int numReaders = 0;
+    private final Semaphore mutex = new Semaphore(1);
+    private final Semaphore wLock = new Semaphore(1);
     
     public void startRead(){
         try {
@@ -34,10 +36,11 @@ public class ReaderWriter {
     public void endRead(){
         try {
             this.mutex.acquire();
-            this.numReaders--;
-            if(this.numReaders == 0){
+            if(this.numReaders == 1){
                 this.wLock.release();
             }
+            this.numReaders--;
+            this.mutex.release();
         } catch (InterruptedException ex) {
             Logger.getLogger(ReaderWriter.class.getName()).log(Level.SEVERE, null, ex);
         }
