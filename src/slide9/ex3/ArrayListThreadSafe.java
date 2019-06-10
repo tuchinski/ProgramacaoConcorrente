@@ -19,9 +19,9 @@ public class ArrayListThreadSafe {
     private final ReentrantReadWriteLock.ReadLock r;
     private final ReentrantReadWriteLock.WriteLock w;
 
-    public ArrayListThreadSafe(ArrayList<Integer> list, ReentrantReadWriteLock rwl) {
-        this.list = list;
-        this.rwl = rwl;
+    public ArrayListThreadSafe() {
+        this.list = new ArrayList<>();
+        this.rwl = new ReentrantReadWriteLock();
         this.r = rwl.readLock();
         this.w = rwl.writeLock();
     }
@@ -44,5 +44,23 @@ public class ArrayListThreadSafe {
             w.unlock();
         }
     }
+    
+    public int remove(int index){
+        w.lock();
+        try{
+            return this.list.remove(index);
+        }finally{
+            w.unlock();
+        }
+    }
 
+    public Object[] listAll(){
+        r.lock();
+        
+        try{
+            return this.list.toArray();
+        }finally{
+            r.unlock();
+        }
+    }
 }
