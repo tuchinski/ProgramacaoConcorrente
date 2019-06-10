@@ -16,7 +16,7 @@ import java.util.concurrent.locks.ReentrantLock;
  */
 public class SharedFifoQueue {
 
-    private Queue<Integer> fila;
+    private final Queue<Integer> fila;
     private final int tamanhoMax;
     private final ReentrantLock lock;
     private final Condition estaCheio;
