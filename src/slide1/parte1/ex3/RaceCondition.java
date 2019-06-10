@@ -3,7 +3,7 @@
  * disputa e tente gerar um teste para que ocorra um problema
  * de seguran ̧ca (safety).
  */
-package slide1.ex3;
+package slide1.parte1.ex3;
 
 
 

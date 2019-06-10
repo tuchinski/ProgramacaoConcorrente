@@ -4,7 +4,7 @@
 */
 
 
-package slide1.ex1;
+package slide1.parte1.ex1;
 
 
 /**

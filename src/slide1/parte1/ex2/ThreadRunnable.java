@@ -3,7 +3,7 @@
  * de threads a serem instanciadas e teste os dois modos de criar
  * threads em Java. 
  */
-package slide1.ex2;
+package slide1.parte1.ex2;
 import java.util.Scanner;
         
 
