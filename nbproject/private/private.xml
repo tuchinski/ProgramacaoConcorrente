@@ -3,15 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
-            <file>file:/home/cogeti/Documentos/UTFPR/Prog_Concorrente/ProgramacaoConcorrente/src/slide1/parte3/ex2/GrupoThreads.java</file>
-            <file>file:/home/cogeti/Documentos/UTFPR/Prog_Concorrente/ProgramacaoConcorrente/src/slide1/parte3/ex2/SimpleThread.java</file>
-            <file>file:/home/cogeti/Documentos/UTFPR/Prog_Concorrente/ProgramacaoConcorrente/src/slide6a/ex1/MonitorBufferCircular.java</file>
-=======
-            <file>file:/home/todos/alunos/cm/a1792334/NetBeansProjects/ProgConcorrente/src/slide1/parte2/ex4/Main.java</file>
-            <file>file:/home/todos/alunos/cm/a1792334/NetBeansProjects/ProgConcorrente/src/slide1/parte2/ex4/MonitorThread.java</file>
-            <file>file:/home/todos/alunos/cm/a1792334/NetBeansProjects/ProgConcorrente/src/slide1/parte2/ex4/SimpleThread.java</file>
->>>>>>> 1d8ab04a379a4f02b1eccddcc73b08d8dd413291
+            <file>file:/home/todos/alunos/cm/a1792334/NetBeansProjects/ProgConcorrente/src/slide8/ex1_3/ReaderWriter.java</file>
+            <file>file:/home/todos/alunos/cm/a1792334/NetBeansProjects/ProgConcorrente/src/slide9/ex3/main.java</file>
+            <file>file:/home/todos/alunos/cm/a1792334/NetBeansProjects/ProgConcorrente/src/slide9/ex3/ArrayListThreadSafe.java</file>
         </group>
     </open-files>
 </project-private>
