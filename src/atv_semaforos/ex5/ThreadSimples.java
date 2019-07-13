@@ -5,20 +5,35 @@
  */
 package atv_semaforos.ex5;
 
+import java.util.Random;
+
 /**
  *
  * @author tuchinski
  */
 public class ThreadSimples extends Thread{
+    Barreira b;
+    int tempo;
 
+    public ThreadSimples(Barreira b) {
+        this.b = b;
+    }
+    
+    public ThreadSimples(Barreira b, int tempo) {
+        this.b = b;
+        this.tempo = tempo;
+    }
+
+    
     @Override
     public void run() {
+        //Random rnd = new Random();
         System.out.println("Rodando Thread " + Thread.currentThread().getName());
         try {
-            Thread.sleep(1000);
-        } catch (InterruptedException ex) {
-            System.out.println(ex);
-        }
+//            Thread.sleep(rnd.nextInt(5) * 1000);
+            Thread.sleep(tempo);
+        } catch (InterruptedException ex) {}
+        b.incrementaBarreira();
         System.out.println("Finalizando Thread " + Thread.currentThread().getName());
     }
     

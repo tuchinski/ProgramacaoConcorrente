@@ -6,31 +6,51 @@
 package atv_semaforos.ex5;
 
 import java.util.ArrayList;
+import java.util.concurrent.Semaphore;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author tuchinski
  */
 public class Barreira {
-    private ArrayList<Thread> lista;
-    private int valorBarreira;
 
-    public Barreira(int valorBarreira) {
-        this.valorBarreira = valorBarreira;
-        this.lista = new ArrayList<>(this.valorBarreira);
+    Semaphore semaforo;
+    Semaphore mutex;
+
+    int numThreads;
+    int tamBarreira;
+    int maxThreads;
+
+
+    public Barreira(int tamBarreira) {
+        this.numThreads = 0;
+        this.tamBarreira = tamBarreira;
+        this.numThreads = 0;
+
+        this.semaforo = new Semaphore(0);
+        this.mutex = new Semaphore(1);
     }
     
-    public synchronized void bloqueia(Thread t){
+    void incrementaBarreira(){
         try {
-            t.wait();
-            this.valorBarreira--;
-        } catch (InterruptedException ex) {
-            System.out.println(ex);
+            this.mutex.acquire();
+        } catch (InterruptedException ex) {}
+        
+        this.numThreads++;
+        
+        System.out.println("Num Threads: " + numThreads);
+        
+        if(numThreads>=tamBarreira){
+            semaforo.release();
+            System.out.println("libero!!!!!!");
         }
         
-        if(valorBarreira == 0){
-            notifyAll();
-        }
+        try {
+            System.out.println(semaforo.availablePermits());
+            semaforo.acquire();
+        } catch (InterruptedException e) {}
+        
     }
-    
 }
