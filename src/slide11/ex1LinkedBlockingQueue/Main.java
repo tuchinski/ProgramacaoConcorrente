@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package slide11.ex1;
+package slide11.ex1LinkedBlockingQueue;
 
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  *
@@ -14,8 +14,8 @@ import java.util.concurrent.BlockingQueue;
  */
 public class Main {
     public static void main(String[] args) {
-        BlockingQueue fila = new ArrayBlockingQueue(100);
-//        BlockingQueue fila = new LinkedBlockingQueue(100);
+//        BlockingQueue fila = new ArrayBlockingQueue(100);
+        BlockingQueue fila = new LinkedBlockingQueue(100);
         
         Produtor p1 = new Produtor(fila);
         Produtor p2 = new Produtor(fila);

@@ -3,19 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package slide11.ex2;
+package slide11.parte2.ex1;
 
 /**
  *
  * @author tuchinski
  */
-public class Carta {
-    String naipe;
-    String valor;
-
-    public Carta(String naipe, String valor) {
-        this.naipe = naipe;
-        this.valor = valor;
-    }
+public class aaa {
     
 }

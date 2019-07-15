@@ -5,22 +5,12 @@
  */
 package slide11.ex2;
 
-import java.util.concurrent.PriorityBlockingQueue;
-
 /**
  *
- * @author a1792334
+ * @author tuchinski
  */
 public class Main {
     public static void main(String[] args) {
-        Carta a = new Carta(1, 'A', "copas");
-        Carta b = new Carta(1, 'A', "copas");
         
-        System.out.println(a);
-        System.out.println(b);
-        
-        PriorityBlockingQueue filaPrioridade = new PriorityBlockingQueue();
-        
-        System.out.println(a == b);
     }
 }

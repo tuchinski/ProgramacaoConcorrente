@@ -3,32 +3,37 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package slide11.ex1;
+package slide11.ex1LinkedBlockingQueue;
 
+import slide11.ex1ArrayBlockingQueue.*;
+import java.util.Random;
 import java.util.concurrent.BlockingQueue;
 
 /**
  *
  * @author a1792334
  */
-public class Consumidor implements Runnable {
-
+public class Produtor implements Runnable {
     private final BlockingQueue fila;
 
-    public Consumidor(BlockingQueue fila) {
-        this.fila = fila;
+    public Produtor(BlockingQueue queue) {
+        this.fila = queue;
     }
 
     @Override
     public void run() {
+        Random rnd = new Random();
         int count = 0;
-        while (count < 3000000) {
+        while(count < 3000000){
+            int n = rnd.nextInt(100);
+//            System.out.println("Add na fila: " + n);
             try {
-                System.out.println("Pegando valor da fila: " + this.fila.take());
-                this.fila.take();
+                this.fila.put(n);
             } catch (InterruptedException ex) {}
             count++;
         }
     }
-
+    
+    
+    
 }
