@@ -24,7 +24,7 @@ public class Consumidor implements Runnable {
         int count = 0;
         while (count < 3000000) {
             try {
-//                System.out.println("Pegando valor da fila: " + this.fila.take());
+                System.out.println("Pegando valor da fila: " + this.fila.take());
                 this.fila.take();
             } catch (InterruptedException ex) {}
             count++;

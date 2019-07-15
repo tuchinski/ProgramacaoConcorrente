@@ -25,7 +25,7 @@ public class Produtor implements Runnable {
         int count = 0;
         while(count < 3000000){
             int n = rnd.nextInt(100);
-//            System.out.println("Add na fila: " + n);
+            System.out.println("Add na fila: " + n);
             try {
                 this.fila.put(n);
             } catch (InterruptedException ex) {}

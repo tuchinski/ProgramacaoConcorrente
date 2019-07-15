@@ -14,7 +14,7 @@ import java.util.concurrent.locks.ReentrantLock;
 public class main {
     public static void main(String[] args) {
         ReentrantLock l = new ReentrantLock();
-        SharedFifoQueue fila = new SharedFifoQueue(l, 10);
+        SharedFifoQueue fila = new SharedFifoQueue(l, 100);
         
         Thread t1 = new ThreadConsome(fila);
         Thread t2 = new ThreadConsome(fila);
